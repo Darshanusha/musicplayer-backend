@@ -4,14 +4,16 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
-//@Builder
 @Table(name = "songs_details")
 public class SongInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "musicid")
     int musicId;
 
@@ -21,6 +23,9 @@ public class SongInfo {
     String artist;
 
     String movie;
+
+    @Column(name = "release_date")
+    Date releaseDate;
 
     @Column(name = "m_name")
     String musicianName;
@@ -33,4 +38,10 @@ public class SongInfo {
     long count;
     String keywords;
     int stars;
+
+    @Column(name = "creation_date")
+    LocalDateTime creationDate;
+
+    @Column(name = "update_date")
+    LocalDateTime updateDate;
 }

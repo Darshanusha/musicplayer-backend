@@ -1,4 +1,4 @@
-package dto;
+package com.music.musicplayer.musicplayer.dto;
 
 import lombok.Data;
 import java.sql.Timestamp;

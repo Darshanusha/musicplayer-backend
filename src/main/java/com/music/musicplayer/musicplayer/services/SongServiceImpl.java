@@ -2,10 +2,8 @@ package com.music.musicplayer.musicplayer.services;
 
 import com.music.musicplayer.musicplayer.entity.SongInfo;
 import com.music.musicplayer.musicplayer.repo.SongsRepo;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -13,7 +11,6 @@ import java.util.Optional;
 
 @Service
 public class SongServiceImpl implements SongService {
-
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SongServiceImpl.class);
 
@@ -25,7 +22,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public SongInfo postSong(SongInfo songInfo) {
-        SongInfo save = songsRepo.save(songInfo);
+        SongInfo save = songsRepo.saveAndFlush(songInfo);
         if(save.getMusicLink() == null){
             LOGGER.error("Error inserting Song {} ",songInfo);
             return save;

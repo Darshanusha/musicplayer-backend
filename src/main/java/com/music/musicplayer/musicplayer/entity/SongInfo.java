@@ -2,6 +2,8 @@ package com.music.musicplayer.musicplayer.entity;
 
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -40,8 +42,10 @@ public class SongInfo {
     int stars;
 
     @Column(name = "creation_date")
+    @CreationTimestamp
     LocalDateTime creationDate;
 
     @Column(name = "update_date")
+    @UpdateTimestamp
     LocalDateTime updateDate;
 }

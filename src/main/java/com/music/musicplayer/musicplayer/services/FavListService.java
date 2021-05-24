@@ -5,7 +5,9 @@ import com.music.musicplayer.musicplayer.entity.SongInfo;
 
 import java.util.List;
 
-public interface PublicFavListService {
+public interface FavListService {
 
     List<SongInfo> getPubFavList(int id);
+    List<SongInfo> getPrivFavList(int id);
+
 }

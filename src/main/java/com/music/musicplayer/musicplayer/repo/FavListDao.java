@@ -14,4 +14,8 @@ public class FavListDao {//extends JpaRepository<FavSong, Integer> {
     public List<Map<String, Object>> getPublicFavSongById(int id){
         return jdbcTemplate.queryForList("select * from user_pub where uid = (?)", id);
     }
+
+    public List<Map<String, Object>> getPrivateFavSongById(int id){
+        return jdbcTemplate.queryForList("select * from user_priv where uid = (?)", id);
+    }
 }

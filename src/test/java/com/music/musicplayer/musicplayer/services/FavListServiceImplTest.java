@@ -13,7 +13,7 @@ import static org.mockito.Mockito.*;
 
 
 @SpringBootTest
-class PublicFavListServiceImplTest {
+class FavListServiceImplTest {
 
     @Value("${common_music_path}")
     String additionalPath;
@@ -25,7 +25,7 @@ class PublicFavListServiceImplTest {
     SongService songService;
 
     @InjectMocks
-    PublicFavListServiceImpl favListService;
+    FavListServiceImpl favListService;
 
     int id = 1;
     List<Map<String, Object>> maps = new ArrayList<>();
@@ -49,6 +49,26 @@ class PublicFavListServiceImplTest {
         when(favListDao.getPublicFavSongById(id)).thenReturn(maps);
         when(songService.getSongById(id)).thenReturn(Optional.of(songInfo));
         assertEquals(favSongs,favListService.getPubFavList(id));
+    }
+
+    @Test
+    public void getPrivFavList_Should_Return_ListOf_SongInfo(){
+        map.put("pub_id","1");
+        map.put("uid", "1");
+        map.put("musicid","1");
+        map.put("isstared","false");
+        maps.add(map);
+        SongInfo songInfo = new SongInfo();
+        songInfo.setMusicLink(additionalPath + "//test");
+        songInfo.setArtist("Darshan");
+        songInfo.setCount(0);
+        songInfo.setEnabled(true);
+        songInfo.setMovie("Darshan");
+        List<SongInfo> favSongs = new ArrayList<>();
+        favSongs.add(songInfo);
+        when(favListDao.getPrivateFavSongById(id)).thenReturn(maps);
+        when(songService.getSongById(id)).thenReturn(Optional.of(songInfo));
+        assertEquals(favSongs,favListService.getPrivFavList(id));
     }
 
     @Test

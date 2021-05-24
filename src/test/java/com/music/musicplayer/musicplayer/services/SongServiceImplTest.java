@@ -31,13 +31,13 @@ class SongServiceImplTest {
         songInfo.setCount(0);
         songInfo.setEnabled(true);
         songInfo.setMovie("Darshan");
-        when(songsRepo.findById(id)).thenReturn(Optional.of(songInfo));
+        when(songsRepo.findAllByMusicIdAndIsEnabled(id,true)).thenReturn(Optional.of(songInfo));
         assertEquals(songInfo,songService.getSongById(id).get());
     }
 
     @Test
     public void getSongById_Should_return_emptyObject(){
-        when(songsRepo.findById(id)).thenReturn(Optional.ofNullable(null));
+        when(songsRepo.findAllByMusicIdAndIsEnabled(id,true)).thenReturn(Optional.ofNullable(null));
         assertFalse(songService.getSongById(id).isPresent());
     }
 

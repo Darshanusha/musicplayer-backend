@@ -1,7 +1,7 @@
 package com.music.musicplayer.musicplayer.controllers;
 
 import com.music.musicplayer.musicplayer.entity.SongInfo;
-import com.music.musicplayer.musicplayer.services.PublicFavListService;
+import com.music.musicplayer.musicplayer.services.FavListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -10,10 +10,14 @@ import java.util.List;
 public class FavListController {
 
     @Autowired
-    PublicFavListService publicFavListService;
+    FavListService publicFavListService;
 
     @GetMapping(value = "/api/user/favlist/public/{id}")
     public List<SongInfo> getPubFavList(@PathVariable int id){
         return publicFavListService.getPubFavList(id);
+    }
+    @GetMapping(value = "/api/user/favlist/private/{id}")
+    public List<SongInfo> getPrivFavList(@PathVariable int id){
+        return publicFavListService.getPrivFavList(id);
     }
 }

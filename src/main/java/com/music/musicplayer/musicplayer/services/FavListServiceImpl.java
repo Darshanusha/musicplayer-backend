@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class PublicFavListServiceImpl implements PublicFavListService {
+public class FavListServiceImpl implements FavListService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(PublicFavListServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FavListServiceImpl.class);
 
     @Autowired
     FavListDao favListDao;
@@ -21,16 +21,25 @@ public class PublicFavListServiceImpl implements PublicFavListService {
     @Autowired
     SongService songService;
 
+    List<FavSong> songIds = new ArrayList<>();
+
     @Override
     public List<SongInfo> getPubFavList(int id) {
-        List<FavSong> songIds = new ArrayList<>();
         List<Map<String, Object>> maps = favListDao.getPublicFavSongById(id);
-        maps.forEach(map -> songIds.add(mapToFavSong(map)));
-        LOGGER.info("getting fav list id's for user id {}",id);
-        return getFavListSongs(songIds);
+        maps.forEach(map -> songIds.add(mapJdbcToFavSong(map)));
+        LOGGER.info("getting public fav list id's for user id {}",id);
+        return getSongListByIds(songIds);
     }
 
-    private List<SongInfo> getFavListSongs(List<FavSong> songIds) {
+    @Override
+    public List<SongInfo> getPrivFavList(int id) {
+        List<Map<String, Object>> maps = favListDao.getPrivateFavSongById(id);
+        maps.forEach(map -> songIds.add(mapJdbcToFavSong(map)));
+        LOGGER.info("getting private fav list id's for user id {}",id);
+        return getSongListByIds(songIds);
+    }
+
+    private List<SongInfo> getSongListByIds(List<FavSong> songIds) {
         List<SongInfo> favSongs = new ArrayList<>();
         for (FavSong favSong: songIds){
             Optional<SongInfo> songById = songService.getSongById(favSong.getMusicId());
@@ -44,7 +53,7 @@ public class PublicFavListServiceImpl implements PublicFavListService {
         return favSongs;
     }
 
-    private FavSong mapToFavSong(Map<String, Object> map) {
+    private FavSong mapJdbcToFavSong(Map<String, Object> map) {
         final ObjectMapper mapper = new ObjectMapper();
         FavSong favSong = null ;
         try{

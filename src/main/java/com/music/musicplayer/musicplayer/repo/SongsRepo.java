@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface SongsRepo extends JpaRepository<SongInfo, Integer> {
-    @Override
-    Optional<SongInfo> findById(Integer integer);
+
+    Optional<SongInfo> findAllByMusicIdAndIsEnabled(Integer integer, boolean isEnabled);
 
 }

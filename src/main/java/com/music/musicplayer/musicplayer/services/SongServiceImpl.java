@@ -32,7 +32,7 @@ public class SongServiceImpl implements SongService {
     }
 
     public Optional<SongInfo> getSongById(int id) {
-        Optional<SongInfo> optSongInfo = songsRepo.findById(id);
+        Optional<SongInfo> optSongInfo = songsRepo.findAllByMusicIdAndIsEnabled(id,true);
         optSongInfo.ifPresentOrElse(this::addPath, ()->songNotFound(id));
         return optSongInfo;
     }

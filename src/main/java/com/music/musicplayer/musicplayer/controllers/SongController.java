@@ -13,14 +13,16 @@ public class SongController {
     @Autowired
     SongService songService;
 
-    @GetMapping(value = "/api/songs/{id}")
+    @GetMapping(value = "/songs/{id}")
     public SongInfo getSong(@PathVariable int id){
         return songService.getSongById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,String.format("Id with %s not found",id)));
     }
 
-    @PostMapping(value = "/api/songs")
+    @PostMapping(value = "/songs")
     public SongInfo postSong(@RequestBody SongInfo songInfo ){
         return songService.postSong(songInfo);//.orElseThrow(()-> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,String.format("Error while posting %s", songInfo.getMusicName())));
     }
+
+
 
 }

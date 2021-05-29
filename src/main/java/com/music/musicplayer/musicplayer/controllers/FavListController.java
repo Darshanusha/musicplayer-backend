@@ -10,14 +10,15 @@ import java.util.List;
 public class FavListController {
 
     @Autowired
-    FavListService publicFavListService;
+    FavListService favListService;
 
-    @GetMapping(value = "/api/user/favlist/public/{id}")
+    @GetMapping(value = "/user/favlist/public/{id}")
     public List<SongInfo> getPubFavList(@PathVariable int id){
-        return publicFavListService.getPubFavList(id);
+        return favListService.getPubFavList(id);
     }
-    @GetMapping(value = "/api/user/favlist/private/{id}")
+    @GetMapping(value = "/user/favlist/private/{id}")
     public List<SongInfo> getPrivFavList(@PathVariable int id){
-        return publicFavListService.getPrivFavList(id);
+        return favListService.getPrivFavList(id);
     }
+
 }

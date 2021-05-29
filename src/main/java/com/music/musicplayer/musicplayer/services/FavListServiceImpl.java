@@ -21,10 +21,9 @@ public class FavListServiceImpl implements FavListService {
     @Autowired
     SongService songService;
 
-    List<FavSong> songIds = new ArrayList<>();
-
     @Override
     public List<SongInfo> getPubFavList(int id) {
+        List<FavSong> songIds = new ArrayList<>();
         List<Map<String, Object>> maps = favListDao.getPublicFavSongById(id);
         maps.forEach(map -> songIds.add(mapJdbcToFavSong(map)));
         LOGGER.info("getting public fav list id's for user id {}",id);
@@ -33,6 +32,7 @@ public class FavListServiceImpl implements FavListService {
 
     @Override
     public List<SongInfo> getPrivFavList(int id) {
+        List<FavSong> songIds = new ArrayList<>();
         List<Map<String, Object>> maps = favListDao.getPrivateFavSongById(id);
         maps.forEach(map -> songIds.add(mapJdbcToFavSong(map)));
         LOGGER.info("getting private fav list id's for user id {}",id);

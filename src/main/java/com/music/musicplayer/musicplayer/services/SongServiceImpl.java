@@ -23,7 +23,7 @@ public class SongServiceImpl implements SongService {
     @Override
     public SongInfo postSong(SongInfo songInfo) {
         SongInfo save = songsRepo.saveAndFlush(songInfo);
-        if(save.getMusicLink() == null){
+        if(save == null){
             LOGGER.error("Error inserting Song {} ",songInfo);
             return save;
         }

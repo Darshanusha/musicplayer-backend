@@ -18,7 +18,7 @@ public class FriendServiceImpl implements FriendService {
     FriendsDao friendsDao;
 
     @Autowired
-    UserRepo userRepo;
+    UserService userService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FriendServiceImpl.class);
 
@@ -35,7 +35,7 @@ public class FriendServiceImpl implements FriendService {
         maps.forEach(map -> friendsId.add(Integer.parseInt(map.get("fid").toString())));
         LOGGER.info("User Friends fetched successfully for user id {}, friend list {}",userId,friendsId);
         friendsId
-                .forEach(fid -> userRepo.findByUidAndIsEnabled(fid, true)
+                .forEach(fid -> userService.findUserById(fid)
                         .ifPresentOrElse(usr-> friendsList.add(usr),
                                 ()-> LOGGER.warn("user id {} not found or disabled",fid) ));
         return friendsList;

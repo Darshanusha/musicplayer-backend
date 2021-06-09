@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface UserRepo extends JpaRepository<UserInfo, Integer> {
     Optional<UserInfo> findByUidAndIsEnabled(int userId, boolean isEnabled);
+    Optional<UserInfo> findByNameAndIsEnabled(String name, boolean isEnabled);
 }

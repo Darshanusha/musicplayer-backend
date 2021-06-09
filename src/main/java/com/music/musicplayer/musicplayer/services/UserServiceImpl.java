@@ -20,8 +20,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Optional<UserInfo> findUserByName(String name) {
+        return userRepo.findByNameAndIsEnabled(name,true);
+    }
+
+    @Override
     public boolean isPrincipalUser(Principal principal, int id) {
         Optional<UserInfo> user = findUserById(id);
         return user.isPresent() && principal.getName().equals(user.get().getName());
     }
+
 }

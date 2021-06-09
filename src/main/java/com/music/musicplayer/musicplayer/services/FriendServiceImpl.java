@@ -2,7 +2,6 @@ package com.music.musicplayer.musicplayer.services;
 
 import com.music.musicplayer.musicplayer.entity.UserInfo;
 import com.music.musicplayer.musicplayer.repo.FriendsDao;
-import com.music.musicplayer.musicplayer.repo.UserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 13.2 (Debian 13.2-1.pgdg100+1)
--- Dumped by pg_dump version 13.2 (Debian 13.2-1.pgdg100+1)
+-- Dumped from database version 13.3 (Debian 13.3-1.pgdg100+1)
+-- Dumped by pg_dump version 13.3 (Debian 13.3-1.pgdg100+1)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -310,11 +310,11 @@ ALTER TABLE ONLY public.songs_details
 
 
 --
--- Name: user_role uk_it77eq964jhfqtu54081ebtio; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_role uk_uid; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.user_role
-    ADD CONSTRAINT uk_it77eq964jhfqtu54081ebtio UNIQUE (role_id);
+    ADD CONSTRAINT uk_uid UNIQUE (uid);
 
 
 --

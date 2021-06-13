@@ -48,4 +48,6 @@ public class SongInfo {
     @Column(name = "update_date")
     @UpdateTimestamp
     LocalDateTime updateDate;
+
+
 }

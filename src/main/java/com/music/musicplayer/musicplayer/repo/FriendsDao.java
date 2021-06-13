@@ -1,8 +1,6 @@
 package com.music.musicplayer.musicplayer.repo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +14,13 @@ public class FriendsDao {
     public List<Map<String,Object>> getFrendsUserId(int userId){
         return jdbcTemplate.queryForList("select fid from friends_list where uid = (?)", userId);
     }
-
+    public int removeFriend(int userId, int fid) {
+        return jdbcTemplate.update("delete from friends_list where uid = ? and fid = ? ",userId,fid);
+    }
+    public int addFriend(int userId, int fid) {
+        return jdbcTemplate.update("insert into friends_list (uid,fid) values( ? , ? ) ",userId,fid);
+    }
+    public boolean isFriend(int userId, int friendId){
+        return jdbcTemplate.queryForObject("SELECT EXISTS(SELECT * from friends_list where uid = (?) and fid = (?))", new Object[]{userId,friendId}, Boolean.class );
+    }
 }

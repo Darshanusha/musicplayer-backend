@@ -12,21 +12,19 @@ import java.util.Date;
 @Data
 @Table(name = "user_table")
 public class UserInfo {
-    UserInfo(){
+    public UserInfo(){
 
     }
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int uid;
 
     @Column(name = "uname")
     String name;
 
-    @JsonIgnore
     @Column(name = "u_auth")
     String userAuth;
 
-    @JsonIgnore
     @Column(name = "pwd")
     String password;
 

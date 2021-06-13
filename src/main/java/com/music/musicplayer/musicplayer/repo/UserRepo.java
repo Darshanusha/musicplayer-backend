@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface UserRepo extends JpaRepository<UserInfo, Integer> {
     Optional<UserInfo> findByUidAndIsEnabled(int userId, boolean isEnabled);
     Optional<UserInfo> findByNameAndIsEnabled(String name, boolean isEnabled);
+    Optional<UserInfo> findByName(String name);
 }

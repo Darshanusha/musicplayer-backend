@@ -1,5 +1,6 @@
 package com.music.musicplayer.musicplayer.controllers;
 
+import com.music.musicplayer.musicplayer.dto.ResponseClass;
 import com.music.musicplayer.musicplayer.entity.SongInfo;
 import com.music.musicplayer.musicplayer.services.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,15 @@ public class SongController {
         return songService.postSong(songInfo);//.orElseThrow(()-> new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,String.format("Error while posting %s", songInfo.getMusicName())));
     }
 
+    @GetMapping(value = "/admin/disable/song/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseClass disableSong(@PathVariable int id){
+        return songService.disableSong(id);
+    }
 
-
+    @GetMapping(value = "/admin/enable/song/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseClass enableSong(@PathVariable int id){
+        return songService.enableSong(id);
+    }
 }

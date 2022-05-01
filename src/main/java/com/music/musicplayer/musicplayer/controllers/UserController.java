@@ -5,11 +5,12 @@ import com.music.musicplayer.musicplayer.entity.UserInfo;
 import com.music.musicplayer.musicplayer.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import java.security.Principal;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -32,6 +33,13 @@ public class UserController {
         else {
             return responseUserInfo;
         }
+    }
+
+    @GetMapping("/user/{userName}")
+    public ResponseEntity<UserInfo> getUserByName(@PathVariable String userName) {
+        Optional<UserInfo> userByName = userService.findUserByName(userName);
+        return userByName.map(userInfo -> ResponseEntity.status(HttpStatus.OK).body(userInfo))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(new UserInfo()));
     }
 
     @GetMapping("/admin/disable/user/{id}")

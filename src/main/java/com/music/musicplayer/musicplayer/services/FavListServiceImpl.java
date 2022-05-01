@@ -208,6 +208,7 @@ public class FavListServiceImpl implements FavListService {
              favSong = mapper.convertValue(map, FavSong.class);
              LOGGER.info("Mapping to FavSong.class success for id {} ",favSong.getMusicId());
         }catch (Exception e){
+            e.printStackTrace();
             LOGGER.error("Error mapping to FavSong.class for values {} , check if table user_pub columns are changed",map.values());
         }
         return favSong;

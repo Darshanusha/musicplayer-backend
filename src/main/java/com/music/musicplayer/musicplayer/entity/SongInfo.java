@@ -14,13 +14,22 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "songs_details")
 public class SongInfo {
+
+     public SongInfo(int id,String musicName){
+       this.musicId = musicId;
+        this.musicName = musicName;
+    }
+
+    public SongInfo(){
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "musicid")
-    int musicId;
+    public int musicId;
 
     @Column(name = "music_name")
-    String musicName;
+    public String musicName;
 
     String artist;
 

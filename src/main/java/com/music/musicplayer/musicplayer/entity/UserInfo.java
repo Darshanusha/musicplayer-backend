@@ -1,7 +1,6 @@
 package com.music.musicplayer.musicplayer.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;

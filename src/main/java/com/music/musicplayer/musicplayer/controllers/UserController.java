@@ -6,9 +6,9 @@ import com.music.musicplayer.musicplayer.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
 import java.security.Principal;
 import java.util.Optional;
 
@@ -24,7 +24,6 @@ public class UserController {
     }
 
     @PostMapping("/user/signup")
-    @PreAuthorize("permitAll()")
     public UserInfo addUser(@RequestBody UserInfo userInfo){
         UserInfo responseUserInfo = userService.addUser(userInfo);
         if(responseUserInfo.getName() == null){
@@ -43,13 +42,11 @@ public class UserController {
     }
 
     @GetMapping("/admin/disable/user/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseClass disableUser(@PathVariable int id){
         return userService.disableUser(id);
     }
 
     @GetMapping("/admin/enable/user/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseClass enableUser(@PathVariable int id){
         return userService.enableUser(id);
     }

@@ -3,7 +3,6 @@ package com.music.musicplayer.musicplayer.services;
 import com.music.musicplayer.musicplayer.dto.ResponseClass;
 import com.music.musicplayer.musicplayer.entity.SongInfo;
 
-
 import java.util.Optional;
 
 public interface SongService {

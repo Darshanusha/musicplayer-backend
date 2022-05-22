@@ -1,6 +1,5 @@
 package com.music.musicplayer.musicplayer.filters;
 
-import com.music.musicplayer.musicplayer.dto.SongInfoDto;
 import com.music.musicplayer.musicplayer.entity.SongInfo;
 import com.music.musicplayer.musicplayer.filters.impl.MusicFilter;
 

@@ -1,13 +1,11 @@
 package com.music.musicplayer.musicplayer.filters.impl;
 
-import com.music.musicplayer.musicplayer.dto.SongInfoDto;
 import com.music.musicplayer.musicplayer.entity.SongInfo;
 import com.music.musicplayer.musicplayer.filters.MusicCustomRepo;
 import com.music.musicplayer.musicplayer.filters.SongSpecification;
 import com.music.musicplayer.musicplayer.repo.SongsRepo;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
@@ -18,9 +16,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
